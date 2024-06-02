@@ -1,6 +1,6 @@
 # 12 SQL: Employee Tracker
 
-## Your Task
+## The Challenge:
 
 Developers frequently have to create interfaces that allow non-developers to easily view and interact with information stored in databases. These interfaces are called **content management systems (CMS)**. Your assignment this week is to build a command-line application from scratch to manage a company's employee database, using Node.js, Inquirer, and PostgreSQL.
 
@@ -8,7 +8,7 @@ Because this Challenge will require the use of the `Inquirer` package, ensure th
 
 Because this application won’t be deployed, you’ll also need to create a walkthrough video that demonstrates its functionality and all of the following acceptance criteria being met. You’ll need to submit a link to the video and add it to the README of your project.
 
-## User Story
+## Project Conduction:
 
 ```md
 AS A business owner
@@ -38,11 +38,44 @@ WHEN I choose to update an employee role
 THEN I am prompted to select an employee to update and their new role and this information is updated in the database 
 ```
 
+## Technology Stacks:
+- momment.js
+- MongoDB
+- Mongoose ODM
+
+
+
+## npm Packages:
+- inquirer
+- Express.js
+- momment.js
+
+
 ## Mock-Up
 
 The following video shows an example of the application being used from the command line:
 
 [![A video thumbnail shows the command-line employee management application with a play button overlaying the view.](./Assets/12-sql-homework-video-thumbnail.png)](https://2u-20.wistia.com/medias/2lnle7xnpk)
+
+
+## The Deployment:
+
+The Repository: [Click Here.](https://github.com/NovaLanceBrittany/HW-12-SQL-Employee-Tracker)
+
+The Google Drive: [Click Here.](https://drive.google.com/drive/folders/1aI_xm6MjSVz5ZbHi5ZtEBc2YxGKFKRR1?usp=sharing)
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## Getting Started
 
@@ -174,14 +207,11 @@ Fulfilling any of the following can add up to 20 points to your grade. Note that
 
 ## Review
 
-You are required to submit BOTH of the following for review:
+
 
 * A walkthrough video demonstrating the functionality of the application.
 
-* The URL of the GitHub repository, with a unique name and a README describing the project.
 
----
-© 2024 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved.
 
 
 // Gary Tips
