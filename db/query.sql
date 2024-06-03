@@ -2,7 +2,7 @@
 
 -- Employee Table
 -- == The Employee Table has the most amount of variables and we want to add those to both the Department Table and allow for managers to be chosen for those employees with the CONCAT Function - as they are still employees too. 
-SELECT employee.id, employee.first_name, employee.last_name, role.tile, department.name AS Department, role.salary, CONCAT(manager.first_name, " ", manager.last_name) AS manager
+SELECT employee.id, employee.first_name, employee.last_name, role.title, department.name AS Department, role.salary, CONCAT(manager.first_name, ' ', manager.last_name) AS manager
 FROM employee
 LEFT JOIN role ON employee.role_id = role.id
 LEFT JOIN department ON department.id = role.department_id
