@@ -27,7 +27,3 @@ VALUES  ('MajorManiac', 'Szymaniak', 1, NULL),
         ('Nastie', 'Plumridge', 3, 7),
         ('Joedeceives', 'Romero', 1, NULL),
         ('Kremp', 'Haworth', 4, 6);
-
-
-
-

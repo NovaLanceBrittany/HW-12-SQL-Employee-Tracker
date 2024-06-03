@@ -223,7 +223,7 @@ addRole = () => {
       // all role titles will be placed into an array with its paired salary and department
       const params = [results.title, results.salary, results.department];
 
-      // $1 = is the value inputed by the user
+      // $1 = is the value inputed by the user, but for each paramerter, there is a new value holder ($2, $3, ect)
       const sql = `INSERT INTO role (title, salary, department_id) VALUES ($1, $2, $3)`; 
 
       pool.query(sql, params, (err, results) => {
@@ -243,85 +243,152 @@ addRole = () => {
 // == Add Employee
 addEmployee = () => {
 
+  //This time we need the Role Table to be available to us
+  const rolesql = `SELECT * FROM role`;
+  pool.query(rolesql, (err, data) => {
+    if (err) throw err;
 
+    // role- its so we can add the role to the array, then we map over the array, and then choose which employee will be added to an role by the user
+    const role = data.rows.map(({id, title}) =>
+    ({name: title, value: id}));
 
+    // We need to have the Employee Table available to us for us to add information to it. 
+    const employeesql = `SELECT * FROM employee`;
+    pool.query(employeesql, (err, data) => {
+      if (err) throw err;
 
+      // employee - to add Manager
+      const employee = data.rows.map(({id, first_name, last_name}) => ({name: first_name + " " + last_name, value: id}));
 
+    inquirer.prompt([
+      {
+        type: 'input',
+        message: 'Please enter the First Name of the new Employee:', 
+        name: 'first_name', 
+        validate: addFirstName => {
+          if (addFirstName) {
+          return true;
+          } else {
+            console.log("Enter the First Name of the Employee you are trying to add to the database.");
+            return false;
+          }
+        }
+      }, 
 
+      {
+        type: 'input',
+        message: 'Please enter the Last Name of the new Employee:', 
+        name: 'last_name', 
+        validate: addLastName => {
+          if (addLastName) {
+          return true;
+          } else {
+            console.log("Enter the Last Name of the Employee you are trying to add to the database.");
+            return false;
+          }
+        }
+      }, 
 
+      {
+        type: 'list',
+        message: "What will be the new Employee's Role at the Company?", 
+        name: 'emrole', 
+        choices: role,
+        validate: addEmRole => {
+          if (addEmRole) {
+          return true;
+          } else {
+            console.log("Enter the Role of the Employee you are trying to add to the database.");
+            return false;
+          }
+        }
+      }, 
 
-
-
-
-
-
-
-  inquirer.prompt([
-    {
-      type: 'input',
-      message: 'Please enter the First Name of the new Employee:', 
-      name: 'firstName', 
-      validate: addFirstName => {
-        if (addFirstName) {
-        return true;
-        } else {
-          console.log("Enter the First Name of the Employee you are trying to add to the database.");
-          return false;
+      {
+        type: 'list',
+        message: 'Will there be a Manager assigned to the new Employee?', 
+        name: 'manager', 
+        choices: employee,
+        validate: addManager => {
+          if (addManager) {
+          return true;
+          } else {
+            console.log("Enter the name of the Manager to be assignd to the Employee you are trying to add to the database.");
+            return false;
+          }
         }
       }
-    }, 
+    ]).then ((results) => {
+      const params = [results.first_name, results.last_name, results.emrole, results.manager];
 
-    {
-      type: 'input',
-      message: 'Please enter the Last Name of the new Employee:', 
-      name: 'lastName', 
-      validate: addLastName => {
-        if (addLastName) {
-        return true;
-        } else {
-          console.log("Enter the Last Name of the Employee you are trying to add to the database.");
-          return false;
-        }
+      const sql = `INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES ($1, $2, $3, $4)`;
+
+      pool.query(sql, params, (err, results) => {
+        if (err) throw err;
+
+        // Confirmation message to the user that the employee was added
+        console.log("Your New Employee has now been added to the database!")
+
+        // brings you back to the main menue
+        start();
+      })
+    })
+  })
+})},
+
+
+// == Update Employee Role
+updateEmployeeRole = () => {
+
+  //
+  const rolesql = `SELECT * FROM role`;
+  pool.query(rolesql, (err, data) => {
+    if (err) throw err;
+
+    // role- its so we can add the role to the array, then we map over the array, and then choose which employee will be added to an role by the user
+    const role = data.rows.map(({id, title}) =>
+    ({name: title, value: id}));
+
+    // We need to have the Employee Table available to us for us to add information to it. 
+    const employeesql = `SELECT * FROM employee`;
+    pool.query(employeesql, (err, data) => {
+      if (err) throw err;
+
+      // employee - to add Manager
+      const employee = data.rows.map(({id, first_name, last_name}) => ({name: first_name + " " + last_name, value: id}));
+
+    inquirer.prompt([
+      {
+        type: 'list',
+        message: "Which Employee's Role do we want to change?", 
+        name: 'employee', 
+        choices: employee
+      },
+
+      {
+        type: 'list',
+        message: "What Role do you want to assign?", 
+        name: 'role', 
+        choices: role,
       }
-    }, 
 
-    {
-      type: 'list',
-      message: "What will be the new Employee's Role at the Company?", 
-      name: 'emrole', 
-      choices: role,
-      validate: addEmRole => {
-        if (addEmRole) {
-        return true;
-        } else {
-          console.log("Enter the Role of the Employee you are trying to add to the database.");
-          return false;
-        }
-      }
-    }, 
+    ]).then ((results) => {
+      const params = [results.employee, results.role];
 
-    {
-      type: 'list',
-      message: 'Will there be a Manager assigned to the new Employee?', 
-      name: 'manager', 
-      choices: employee,
-      validate: addManager => {
-        if (addManager) {
-        return true;
-        } else {
-          console.log("Enter the name of the Manager to be assignd to the Employee you are trying to add to the database.");
-          return false;
-        }
-      }
-    }
-  ])
-}
+      const sql = `UPDATE employee SET role_id = $2 WHERE id = $1`;
 
+      pool.query(sql, params, (err, results) => {
+        if (err) throw err;
 
+        // Confirmation message to the user that the employee was added
+        console.log("Your Employee has been updated to a new role!")
 
-
-
-
+        // brings you back to the main menue
+        start();
+      })
+    })
+  })
+})},
 
 
 
