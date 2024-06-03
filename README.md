@@ -75,7 +75,7 @@ As a business owner, I want to be able to view and manage the departments, roles
 
 The following screenshot shows an example of the application being used from the command line:
 
-![A screenshot shows the command-line employee management application](./assets/)
+![A screenshot shows the command-line employee management application](./assets/image/sql-employee-data.png)
 
 - Please review the Google Drive below for a full video walkthrough.
 
