@@ -46,27 +46,27 @@ ORDER BY department.id;
 
 -- ======================= --
 
--- Updating Information
+-- -- Updating Information
 
--- Update the Managers to the Employees (Manager: Joedeceives)
-UPDATE employee
-SET manager_id = NULL
-WHERE id = 7;
+-- -- Update the Managers to the Employees (Manager: Joedeceives)
+-- UPDATE employee
+-- SET manager_id = NULL
+-- WHERE id = 7;
 
 
--- ======================= --
+-- -- ======================= --
 
--- Deleting Information
+-- -- Deleting Information
 
--- Delete a Department 
-DELETE FROM movie_names, movie_reviews
-WHERE id = 7;
+-- -- Delete a Department 
+-- DELETE FROM department_id
+-- WHERE id = 6;
 
--- Delete a Role
-DELETE FROM movie_names, movie_reviews
-WHERE id = 8;
+-- -- Delete a Role
+-- DELETE FROM role_id
+-- WHERE id = 4;
 
--- Delete a Employee
-DELETE FROM movie_names, movie_reviews
-WHERE id = 8;
+-- -- Delete a Employee
+-- DELETE FROM employee_id
+-- WHERE id = 3;
 
