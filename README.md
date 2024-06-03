@@ -104,50 +104,10 @@ The Google Drive: [Click Here.](https://drive.google.com/drive/folders/1aI_xm6Mj
 ## Getting Started
 
 
-Design the database schema as shown in the following image:
+A constructor function or class could be helpful for organizing these. 
 
-![Database schema includes tables labeled “employee,” role,” and “department.”](./Assets/100-sql-challenge-ERD.png)
+schema.sql file, needs lots of join statements
 
-As the image illustrates, your schema should contain the following three tables:
-
-* `department`
-
-  * `id`: `SERIAL PRIMARY KEY`
-
-  * `name`: `VARCHAR(30) UNIQUE NOT NULL` to hold department name
-
-* `role`
-
-  * `id`: `SERIAL PRIMARY KEY`
-
-  * `title`: `VARCHAR(30) UNIQUE NOT NULL` to hold role title
-
-  * `salary`: `DECIMAL NOT NULL` to hold role salary
-
-  * `department_id`: `INTEGER NOT NULL` to hold reference to department role belongs to
-
-* `employee`
-
-  * `id`: `SERIAL PRIMARY KEY`
-
-  * `first_name`: `VARCHAR(30) NOT NULL` to hold employee first name
-
-  * `last_name`: `VARCHAR(30) NOT NULL` to hold employee last name
-
-  * `role_id`: `INTEGER NOT NULL` to hold reference to employee role
-
-  * `manager_id`: `INTEGER` to hold reference to another employee that is the manager of the current employee (`null` if the employee has no manager)
-
-You might want to use a separate file that contains functions for performing specific SQL queries you'll need to use. A constructor function or class could be helpful for organizing these. You might also want to include a `seeds.sql` file to pre-populate your database, making the development of individual features much easier.
-
-
-
-
-- schema.sql file, needs lots of join statements
-  - create department table
-  - create a role table
-  - create a employee table
-  - 
 
 // the join statements
   SELECT employee,id, employee.first_name, emplyee.last_name, role.title, deparment.name, role,salary, manager.last_name, (on the last neme at the end here, look at hints)
