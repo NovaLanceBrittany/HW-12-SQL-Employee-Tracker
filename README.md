@@ -86,39 +86,3 @@ The Repository: [Click Here.](https://github.com/NovaLanceBrittany/HW-12-SQL-Emp
 
 The Google Drive: [Click Here.](https://drive.google.com/drive/folders/1aI_xm6MjSVz5ZbHi5ZtEBc2YxGKFKRR1?usp=sharing)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-## Getting Started
-
-
-A constructor function or class could be helpful for organizing these. 
-
-schema.sql file, needs lots of join statements
-
-
-// the join statements
-  SELECT employee,id, employee.first_name, emplyee.last_name, role.title, deparment.name, role,salary, manager.last_name, (on the last neme at the end here, look at hints)
-  FROM emplyee
-  JOIN role ON Employee.role_id = role.id
-  JOIN department ON department.id = role.department_id
-
-
-  // joining the employeee table on itself for the manager portion
-JOIN emplyee AS manager ON employee.manager_id = manager.id
-
-hints from gary: 
-- want to combine manager.first_name + " " + manager.last_name
-- SQL method to join these together begins with C
